@@ -1,3 +1,6 @@
 spring:
   application:
     name: loco-crew-dispather
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/dispatcher_bd?currentSchema=public&user=postgres&password=0000
