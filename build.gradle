@@ -1,16 +1,16 @@
 plugins {
 	id 'java'
-	id 'org.springframework.boot' version '4.0.3'
-	id 'io.spring.dependency-management' version '1.1.7'
+	id 'org.springframework.boot' version "$springBootVersion"
+	id 'io.spring.dependency-management' version "$springDependencyManagement"
 }
 
-group = 'x.team'
-version = '1.0.0'
-description = 'The educational project for xCode team'
+group = projectGroup
+version = projectVersion
+description = projectDescription
 
 java {
 	toolchain {
-		languageVersion = JavaLanguageVersion.of(21)
+		languageVersion = JavaLanguageVersion.of(javaVersion)
 	}
 }
 
