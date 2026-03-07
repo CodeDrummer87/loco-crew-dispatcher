@@ -1,5 +1,5 @@
 CREATE TABLE IF NOT EXISTS positions (
-    id SERIAL PRIMARY KEY,
+    id BIGSERIAL PRIMARY KEY,
     position_name VARCHAR(25) NOT NULL,
     abbreviate VARCHAR(10) NOT NULL
     );
