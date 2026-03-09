@@ -4,11 +4,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class LoginController {
+public class IndexController {
 
-    @GetMapping("/login.html")
-    public String login() {
+    @GetMapping("/index.html")
+    public String index() {
         //Возвращаем путь к HTML-файлу внутри папки static
-        return "forward:/html/login.html";
+        return "forward:/html/index.html";
     }
 }

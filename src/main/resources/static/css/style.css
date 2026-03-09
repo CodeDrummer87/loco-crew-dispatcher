@@ -68,3 +68,15 @@ button:hover {
     text-align: center;
     margin-top: 20px;
 }
+.login-btn {
+    position: fixed;
+    top: 20px;    /* Отступ сверху */
+    right: 20px;  /* Отступ справа */
+    padding: 10px 20px;
+}
+.left-text {
+    text-align: left;
+    max-width: 600px;
+    margin: 0;
+    padding: 20px;
+}
