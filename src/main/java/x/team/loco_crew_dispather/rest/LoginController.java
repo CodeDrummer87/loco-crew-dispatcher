@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class LoginController {
 
-    @GetMapping("/login.html")
+    @GetMapping("/login")
     public String login() {
         //Возвращаем путь к HTML-файлу внутри папки static
         return "forward:/html/login.html";
