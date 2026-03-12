@@ -26,7 +26,6 @@ public class Report {
     @Column(name = "reporting_point")
     private long reportingPoint;
 
-    @Column
     private long district;
 
     @Column(name = "service_type")
@@ -38,7 +37,6 @@ public class Report {
     @Column(name = "is_coupled_train")
     private boolean isCoupledTrain;
 
-    @Column
     private String notes;
 }
 
