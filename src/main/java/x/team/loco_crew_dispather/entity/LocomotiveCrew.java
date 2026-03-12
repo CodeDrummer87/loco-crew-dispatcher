@@ -19,11 +19,11 @@ public class LocomotiveCrew {
     private Long id;
     private Long driver;
     @Column(name = "has_assistant")
-    private Boolean hasAssistant = false;
+    private Boolean hasAssistant;
     @Column(name = "driver_assistant")
     private Long driverAssistant;
     @Column(name = "has_understudy")
-    private Boolean hasUnderstudy = false;
+    private Boolean hasUnderstudy;
     private Long understudy;
     @Column(name = "traction_kind")
     private Long tractionKind;
