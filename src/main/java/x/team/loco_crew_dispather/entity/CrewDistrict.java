@@ -19,7 +19,7 @@ public class CrewDistrict {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(name = "title")
+    @Column
     private String title;
 
 

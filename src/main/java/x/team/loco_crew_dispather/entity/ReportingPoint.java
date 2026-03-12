@@ -18,6 +18,6 @@ public class ReportingPoint {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(name = "title")
+    @Column
     private String title;
 }
