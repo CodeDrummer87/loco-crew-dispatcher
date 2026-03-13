@@ -20,7 +20,7 @@ public class LocomotiveCrewController {
     }
 
     @GetMapping("/count")
-    public ResponseEntity<Long> getLocomotiveCrewCout() {
+    public ResponseEntity<Long> getLocomotiveCrewCount() {
         return ResponseEntity.ok(locomotiveCrewService.getLocomotiveCrewCount());
     }
 
