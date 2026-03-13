@@ -17,17 +17,34 @@ public class LocomotiveCrew {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Long driver;
+
+    @ManyToOne
+    @JoinColumn(name = "driver_id")
+    private Employee driver;
+
     @Column(name = "has_assistant")
     private Boolean hasAssistant;
-    @Column(name = "driver_assistant")
-    private Long driverAssistant;
+
+    @ManyToOne
+    @JoinColumn(name = "driver_assistant_id")
+    private Employee driverAssistant;
+
     @Column(name = "has_understudy")
     private Boolean hasUnderstudy;
-    private Long understudy;
-    @Column(name = "traction_kind")
-    private Long tractionKind;
-    @Column(name = "service_type")
-    private Long serviceType;
+
+    @ManyToOne
+    @JoinColumn(name = "understudy_id")
+    private Employee understudy;
+
+    @ManyToOne
+    @JoinColumn (name = "traction_kind_id")
+    private TractionKind tractionKind;
+
+    @ManyToOne
+    @JoinColumn(name = "service_type_id")
+    private ServiceType serviceType;
+
     private String notes;
+
+
 }
