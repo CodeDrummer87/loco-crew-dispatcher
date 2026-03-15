@@ -21,5 +21,8 @@ public class Employee {
     private String fullName;
     @Column(name = "personnel_number")
     private Integer personnelNumber;
-    private Long position;
+
+    @ManyToOne
+    @JoinColumn(name = "position_id")
+    private Position position;
 }

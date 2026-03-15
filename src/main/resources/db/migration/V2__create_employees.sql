@@ -2,12 +2,12 @@ CREATE TABLE IF NOT EXISTS employees (
     id BIGSERIAL PRIMARY KEY,
     full_name VARCHAR(100) NOT NULL,
     personnel_number INTEGER NOT NULL UNIQUE,
-    position BIGINT,
+    position_id BIGINT,
 
-    CONSTRAINT fk_employees_position FOREIGN KEY (position) REFERENCES positions(id) ON DELETE SET NULL
+    CONSTRAINT fk_employees_position FOREIGN KEY (position_id) REFERENCES positions(id) ON DELETE CASCADE
     );
 
-INSERT INTO employees (full_name, personnel_number, position)
+INSERT INTO employees (full_name, personnel_number, position_id)
 VALUES
     ('Иванов Сергей Иванович', 1543, 1),
     ('Смирнов Андрей Петрович', 1544, 2),
