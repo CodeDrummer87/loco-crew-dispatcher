@@ -1,4 +1,3 @@
-//region Locomotive crew count
 const locomotive_crew_count = document.getElementById('s_locomotive_crew_count');
 
 document.addEventListener('DOMContentLoaded', async function () {
@@ -18,4 +17,3 @@ async function getLocomotiveCrewCount() {
         console.error("Ошибка выполнения запроса (счётчик локомотивных бригад): " + error);
     }
 }
-//endregion
