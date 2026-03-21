@@ -5,8 +5,6 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import x.team.loco_crew_dispather.util.CrewOrderParser;
 
-import java.io.IOException;
-
 @SpringBootApplication
 public class LocoCrewDispatherApplication implements CommandLineRunner {
 
