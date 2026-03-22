@@ -118,13 +118,15 @@ public class CrewOrderParser {
                     case "хоз.":
                         serviceType = "хозяйственный поезд";
                         break;
+                    default:
+                        serviceType = "некорректный формат явки";
+                        break;
                 }
 
-                System.out.println("Явка: " + getTomorrowDate() + " в " + time);
-                System.out.println("Пункт явки: " + reportingPoint);
-                System.out.println("Направление: " + district);
-                System.out.println("Тип поездки: " + serviceType);
-                System.out.println();
+                System.out.println("Явка: " + getTomorrowDate() + " в " + time + "\n" +
+                                   "Пункт явки: " + reportingPoint + "\n" +
+                                   "Направление: " + district + "\n" +
+                                   "Тип поездки: " + serviceType + "\n");
             }
         } catch (Exception e) {
             System.out.println("Ошибка отображения содержимого файла наряда");
