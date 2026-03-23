@@ -20,4 +20,8 @@ public class EmployeeService {
     public List<EmployeeDto> getEmployeeList() {
         return employeeRepository.getAllEmployees();
     }
+
+    public long getEmployeesByPosition(Long positionId) {
+        return employeeRepository.countByPositionId(positionId);
+    }
 }
