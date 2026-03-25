@@ -5,7 +5,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import x.team.loco_crew_dispather.dto.EmployeeDto;
 import x.team.loco_crew_dispather.entity.Employee;
-import x.team.loco_crew_dispather.entity.Position;
 
 import java.util.List;
 
