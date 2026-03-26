@@ -19,4 +19,6 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long> {
             JOIN e.position p
             """)
     List<EmployeeDto> getAllEmployees();
+
+    long countByPositionId(Long positionId);
 }

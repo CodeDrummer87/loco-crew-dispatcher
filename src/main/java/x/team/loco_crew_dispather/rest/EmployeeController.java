@@ -2,10 +2,12 @@ package x.team.loco_crew_dispather.rest;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import x.team.loco_crew_dispather.service.EmployeeService;
 import x.team.loco_crew_dispather.dto.EmployeeDto;
+
 import java.util.List;
 
 @RestController
@@ -26,5 +28,10 @@ public class EmployeeController {
     @GetMapping()
     public ResponseEntity<List<EmployeeDto>> findAllEmployees() {
         return ResponseEntity.ok((employeeService.getEmployeeList()));
+    }
+
+    @GetMapping("/count/position/{id}")
+    public ResponseEntity<Long> getEmployeeCountByPosition(@PathVariable("id") Long positionId) {
+        return ResponseEntity.ok(employeeService.getEmployeesByPosition(positionId));
     }
 }
