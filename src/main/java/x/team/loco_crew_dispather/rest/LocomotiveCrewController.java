@@ -28,4 +28,9 @@ public class LocomotiveCrewController {
     public ResponseEntity<List<LocomotiveCrewDto>> findAllLocomotiveCrews(){
         return ResponseEntity.ok(locomotiveCrewService.getLocomotiveCrewList());
     }
+
+    @GetMapping("/count/single-driver")
+    public ResponseEntity<Long> getSingleDriverCount() {
+        return ResponseEntity.ok(locomotiveCrewService.getSingleDriverCount());
+    }
 }

@@ -22,5 +22,9 @@ public class LocomotiveCrewService {
     public List<LocomotiveCrewDto> getLocomotiveCrewList(){
         return locomotiveCrewRepository.getAllLocomotiveCrews();
     }
+
+    public long getSingleDriverCount() {
+        return locomotiveCrewRepository.getSinglePersonCrewCount();
+    }
 }
 

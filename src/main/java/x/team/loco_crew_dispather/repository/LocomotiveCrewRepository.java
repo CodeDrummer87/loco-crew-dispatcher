@@ -30,4 +30,11 @@ public interface LocomotiveCrewRepository extends JpaRepository<LocomotiveCrew, 
     LEFT JOIN lc.understudy
 """)
     List<LocomotiveCrewDto> getAllLocomotiveCrews();
+
+    @Query("""
+                SELECT COUNT(l)
+                FROM LocomotiveCrew l
+                WHERE l.hasAssistant = false AND l.hasUnderstudy = false
+            """)
+    Long getSinglePersonCrewCount();
 }
