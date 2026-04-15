@@ -1,11 +1,13 @@
 const locomotive_crew_count = document.getElementById('s_locomotive_crew_count');
 const employee_count = document.getElementById("s_employee_count");
 const positionItems = document.querySelectorAll('.position-item');
+const single_face_count = document.getElementById('s_single_face_count');
 
 document.addEventListener('DOMContentLoaded', async function () {
     await getLocomotiveCrewCount();
     await getEmployeeCount();
     await getAllPositionsCount();
+    await getSingleDriverCount();
 });
 
 async function getLocomotiveCrewCount() {
@@ -60,5 +62,20 @@ async function getAllPositionsCount() {
                 positionCount.innerText = count;
             }
         }
+    }
+}
+
+async function getSingleDriverCount() {
+    try {
+        const response = await fetch('http://localhost:8080/api/v1/locomotive-crews/count/single-driver');
+
+        if (!response.ok) {
+            throw new Error(`HTTP Error! status: ${response.status}`);
+        }
+
+        single_face_count.innerText = await response.json();
+
+    } catch (error) {
+        console.error("Ошибка выполнения запроса счетчика бригад в одно лицо: " + error);
     }
 }
