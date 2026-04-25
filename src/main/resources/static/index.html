@@ -8,6 +8,7 @@
 </head>
 <body>
 <button class="login-btn" onclick="location.href='/login'">ВОЙТИ В СИСТЕМУ</button>
+
 <div class="left-text">
     <h1>Общий штат</h1>
     <p>Всего сотрудников: <span id="s_employee_count">__</span></p>
@@ -17,15 +18,30 @@
         <p class="position-item" data-id="3">Дублёров: <span class="s_position_count">__</span></p>
         <p class="position-item" data-id="4">ТЧМИ: <span class="s_position_count">__</span></p>
     </div>
-    <p>В работе:ТЧМ: <span id="s_tchm_at_work_count">__</span> ТЧПМ: <span id="s_tchpm_at_work_count">__</span></p>
-    <p>В отвлечении:ТЧМ: <span id="s_tchm_not_at_work_count">__</span>
-                    ТЧПМ: <span id="s_tchpm_not_at_work_count">__</span></p>
+    <div class="positions-container">
+        <p class="position-item">В работе: ТЧМ: <span id="s_tchm_at_work_count">__</span></p>
+        <p class="position-item">ТЧПМ: <span id="s_tchpm_at_work_count">__</span></p>
+    </div>
+    <div class="positions-container">
+        <p class="position-item">В отвлечении: ТЧМ: <span id="s_tchm_not_at_work_count">__</span></p>
+        <p class="position-item">ТЧПМ: <span id="s_tchpm_not_at_work_count">__</span></p>
+    </div>
+
     <h1>Бригады</h1>
     <p>Всего: <span id="s_locomotive_crew_count">__</span></p>
-    <p>Из них в одно лицо: <span id="s_single_face_count">__</span> </p>
-    <p>В работе: __</p>
-    <p>На вызове: __</p>
-    <p>В ожидании явки: __</p>
+    <div class="positions-container">
+        <p>Из них в одно лицо: <span id="s_single_face_count">__</span></p>
+    </div>
+    <div class="positions-container">
+        <p class="position-item">В работе: __</p>
+    </div>
+    <div class="positions-container">
+        <p class="position-item">На вызове: __</p>
+    </div>
+    <div class="positions-container">
+        <p class="position-item">В ожидании явки: __</p>
+    </div>
+</div>
 </div>
 
 <script src="../js/index.js"></script>
