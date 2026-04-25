@@ -25,7 +25,7 @@ public class LocomotiveCrewController {
     }
 
     @GetMapping
-    public ResponseEntity<List<LocomotiveCrewDto>> findAllLocomotiveCrews(){
+    public ResponseEntity<List<LocomotiveCrewDto>> findAllLocomotiveCrews() {
         return ResponseEntity.ok(locomotiveCrewService.getLocomotiveCrewList());
     }
 

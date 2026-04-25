@@ -25,4 +25,12 @@ public class Employee {
     @ManyToOne
     @JoinColumn(name = "position_id")
     private Position position;
+
+    @Column(name = "is_at_work")
+    private Boolean isAtWork;
+
+    @ManyToOne
+    @JoinColumn(name = "status_id")
+    private Status status;
+
 }

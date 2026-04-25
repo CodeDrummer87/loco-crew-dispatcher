@@ -15,11 +15,11 @@ public class LocomotiveCrewService {
         this.locomotiveCrewRepository = locomotiveCrewRepository;
     }
 
-    public long getLocomotiveCrewCount(){
+    public long getLocomotiveCrewCount() {
         return locomotiveCrewRepository.count();
     }
 
-    public List<LocomotiveCrewDto> getLocomotiveCrewList(){
+    public List<LocomotiveCrewDto> getLocomotiveCrewList() {
         return locomotiveCrewRepository.getAllLocomotiveCrews();
     }
 

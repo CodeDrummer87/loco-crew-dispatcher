@@ -14,4 +14,6 @@ public class EmployeeDto {
     private Integer personnelNumber;
     private String positionTitle;
     private String positionAbbreviate;
+    private Boolean isAtWork;
+    private String statusTitle;
 }

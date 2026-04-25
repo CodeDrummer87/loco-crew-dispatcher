@@ -34,4 +34,11 @@ public class EmployeeController {
     public ResponseEntity<Long> getEmployeeCountByPosition(@PathVariable("id") Long positionId) {
         return ResponseEntity.ok(employeeService.getEmployeesByPosition(positionId));
     }
+
+    @GetMapping("/count/position/{positionId}/state/{statusId}")
+    public ResponseEntity<Long> getEmployeeCountByPositionAndStatus(
+            @PathVariable("positionId") Long positionId,
+            @PathVariable("statusId") Long statusId) {
+        return ResponseEntity.ok(employeeService.getEmployeesByPositionAndStatus(positionId, statusId));
+    }
 }
