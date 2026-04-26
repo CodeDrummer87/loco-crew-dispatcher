@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import x.team.loco_crew_dispather.entity.Status;
 import x.team.loco_crew_dispather.service.EmployeeService;
 import x.team.loco_crew_dispather.dto.EmployeeDto;
 
@@ -35,10 +36,11 @@ public class EmployeeController {
         return ResponseEntity.ok(employeeService.getEmployeesByPosition(positionId));
     }
 
-    @GetMapping("/count/position/{positionId}/state/{statusId}")
+    @GetMapping("/count/position/{id}/state/{statusId}")
     public ResponseEntity<Long> getEmployeeCountByPositionAndStatus(
-            @PathVariable("positionId") Long positionId,
-            @PathVariable("statusId") Long statusId) {
-        return ResponseEntity.ok(employeeService.getEmployeesByPositionAndStatus(positionId, statusId));
+            @PathVariable("id") Long positionId,
+            @PathVariable("statusId") int statusId) {
+        Status status = Status.values()[statusId];
+        return ResponseEntity.ok(employeeService.getEmployeesByPositionAndStatus(positionId, status));
     }
 }

@@ -1,21 +1,23 @@
 package x.team.loco_crew_dispather.entity;
 
-import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+public enum Status {
+    WORKING("работает"),
+    ON_CALL("на вызове"),
+    WAITING_FOR_REPORT("в ожидании явки"),
+    SICK("больничный"),
+    VACATION("отпуск"),
+    STUDY("учёба"),
+    SESSION("сессия"),
+    BUSINESS_TRIP("команидировка"),
+    RETIRED("пенсия");
 
-@Entity
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@Table(name = "statuses")
-public class Status {
+    private final String title;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private String title;
+    Status(String title) {
+        this.title = title;
+    }
+
+    public String getTitle() {
+        return title;
+    }
 }

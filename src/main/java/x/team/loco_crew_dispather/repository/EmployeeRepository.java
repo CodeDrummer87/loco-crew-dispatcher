@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import x.team.loco_crew_dispather.dto.EmployeeDto;
 import x.team.loco_crew_dispather.entity.Employee;
+import x.team.loco_crew_dispather.entity.Status;
 
 import java.util.List;
 
@@ -15,14 +16,13 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long> {
 
     @Query("""
              SELECT NEW  x.team.loco_crew_dispather.dto.EmployeeDto(e.id, e.fullName, e.personnelNumber, p.title, 
-                         p.abbreviate, e.isAtWork, s.title)
+                         p.abbreviate, e.isActive,  e.status)
               FROM Employee e
               JOIN e.position p
-              LEFT JOIN e.status s
            """)
     List<EmployeeDto> getAllEmployees();
 
     long countByPositionId(Long positionId);
 
-    long countByPositionIdAndStatusId(Long positionId, Long statusId);
+    long countByPositionIdAndStatus(Long positionId, Status status);
 }

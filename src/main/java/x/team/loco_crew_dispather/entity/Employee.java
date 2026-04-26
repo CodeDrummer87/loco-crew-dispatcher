@@ -26,11 +26,10 @@ public class Employee {
     @JoinColumn(name = "position_id")
     private Position position;
 
-    @Column(name = "is_at_work")
-    private Boolean isAtWork;
+    @Column(name = "is_active")
+    private Boolean isActive;
 
-    @ManyToOne
-    @JoinColumn(name = "status_id")
+    @Enumerated(EnumType.ORDINAL)
+    @Column(name = "status_id")
     private Status status;
-
 }
