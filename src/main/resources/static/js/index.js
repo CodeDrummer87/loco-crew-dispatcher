@@ -76,16 +76,24 @@ async function getEmployeeCountByPositionAndStatus(positionId, statusId) {
 }
 
 async function getTchmAtWork() {
-    tchm_at_work_count.innerText = await getEmployeeCountByPositionAndStatus(1, 0);
+    let total = 0;
+    for (const statusId of [0, 1, 2]) {
+        total += await getEmployeeCountByPositionAndStatus(1, statusId);
+    }
+    tchm_at_work_count.innerText = total;
 }
 
 async function getTchpmAtWork() {
-    tchpm_at_work_count.innerText = await getEmployeeCountByPositionAndStatus(2, 0);
+    let total = 0;
+    for (const statusId of [0, 1, 2]) {
+        total += await getEmployeeCountByPositionAndStatus(2, statusId);
+    }
+    tchpm_at_work_count.innerText = total;
 }
 
 async function getTchmNotAtWork() {
     let total = 0;
-    for (const statusId of [1, 2, 3, 4, 5, 6, 7, 8]) {
+    for (const statusId of [3, 4, 5, 6, 7]) {
         total += await getEmployeeCountByPositionAndStatus(1, statusId);
     }
     tchm_not_at_work_count.innerText = total;
@@ -93,7 +101,7 @@ async function getTchmNotAtWork() {
 
 async function getTchpmNotAtWork() {
     let total = 0;
-    for (const statusId of [1, 2, 3, 4, 5, 6, 7, 8]) {
+    for (const statusId of [3, 4, 5, 6, 7]) {
         total += await getEmployeeCountByPositionAndStatus(2, statusId)
     }
     tchpm_not_at_work_count.innerText = total;
