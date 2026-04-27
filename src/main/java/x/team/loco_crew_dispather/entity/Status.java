@@ -2,14 +2,13 @@ package x.team.loco_crew_dispather.entity;
 
 public enum Status {
     WORKING("работает"),
-    ON_CALL("на вызове"),
-    WAITING_FOR_REPORT("в ожидании явки"),
-    SICK("больничный"),
-    VACATION("отпуск"),
-    STUDY("учёба"),
-    SESSION("сессия"),
-    BUSINESS_TRIP("команидировка"),
-    RETIRED("пенсия");
+    WEEKEND("на выходных"),
+    SECURING("на закреплении"),
+    SICK("на больничном"),
+    VACATION("в отпуске"),
+    STUDY("на учёбе"),
+    SESSION("на сессии"),
+    BUSINESS_TRIP("в командировке");
 
     private final String title;
 

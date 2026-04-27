@@ -1,9 +1,9 @@
 const employee_count = document.getElementById("s_employee_count");
 const positionItems = document.querySelectorAll('.position-item');
-const tchm_at_work_count = document.getElementById('s_tchm_at_work_count');
-const tchpm_at_work_count = document.getElementById('s_tchpm_at_work_count');
-const tchm_not_at_work_count = document.getElementById('s_tchm_not_at_work_count');
-const tchpm_not_at_work_count = document.getElementById('s_tchpm_not_at_work_count');
+const train_drivers_at_work_count = document.getElementById('s_tchm_at_work_count');
+const train_driver_assistants_at_work_count = document.getElementById('s_tchpm_at_work_count');
+const train_drivers_not_at_work_count = document.getElementById('s_tchm_not_at_work_count');
+const train_driver_assistants_not_at_work_count = document.getElementById('s_tchpm_not_at_work_count');
 
 const locomotive_crew_count = document.getElementById('s_locomotive_crew_count');
 const single_face_count = document.getElementById('s_single_face_count');
@@ -11,10 +11,10 @@ const single_face_count = document.getElementById('s_single_face_count');
 document.addEventListener('DOMContentLoaded', async function () {
     await getEmployeeCount();
     await getAllPositionsCount();
-    await getTchmAtWork();
-    await getTchpmAtWork();
-    await getTchmNotAtWork();
-    await getTchpmNotAtWork()
+    await getTrainDriversAtWork();
+    await getTrainDriverAssistantsAtWork();
+    await getTrainDriversNotAtWork();
+    await getTrainDriverAssistantsNotAtWork()
 
     await getLocomotiveCrewCount();
     await getSingleDriverCount();
@@ -75,36 +75,28 @@ async function getEmployeeCountByPositionAndStatus(positionId, statusId) {
     }
 }
 
-async function getTchmAtWork() {
+async function getTrainDriversAtWork() {
+    train_drivers_at_work_count.innerText = await getEmployeeCountByPositionAndStatus(1, 0);
+}
+
+async function getTrainDriverAssistantsAtWork() {
+    train_driver_assistants_at_work_count.innerText = await getEmployeeCountByPositionAndStatus(2, 0);
+}
+
+async function getTrainDriversNotAtWork() {
     let total = 0;
-    for (const statusId of [0, 1, 2]) {
+    for (const statusId of [1, 2, 3, 4, 5, 6, 7]) {
         total += await getEmployeeCountByPositionAndStatus(1, statusId);
     }
-    tchm_at_work_count.innerText = total;
+    train_drivers_not_at_work_count.innerText = total;
 }
 
-async function getTchpmAtWork() {
+async function getTrainDriverAssistantsNotAtWork() {
     let total = 0;
-    for (const statusId of [0, 1, 2]) {
-        total += await getEmployeeCountByPositionAndStatus(2, statusId);
-    }
-    tchpm_at_work_count.innerText = total;
-}
-
-async function getTchmNotAtWork() {
-    let total = 0;
-    for (const statusId of [3, 4, 5, 6, 7]) {
-        total += await getEmployeeCountByPositionAndStatus(1, statusId);
-    }
-    tchm_not_at_work_count.innerText = total;
-}
-
-async function getTchpmNotAtWork() {
-    let total = 0;
-    for (const statusId of [3, 4, 5, 6, 7]) {
+    for (const statusId of [1, 2, 3, 4, 5, 6, 7]) {
         total += await getEmployeeCountByPositionAndStatus(2, statusId)
     }
-    tchpm_not_at_work_count.innerText = total;
+    train_driver_assistants_not_at_work_count.innerText = total;
 }
 
 async function getLocomotiveCrewCount() {
