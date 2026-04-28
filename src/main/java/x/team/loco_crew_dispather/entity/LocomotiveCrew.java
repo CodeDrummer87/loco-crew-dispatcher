@@ -37,7 +37,7 @@ public class LocomotiveCrew {
     private Employee understudy;
 
     @ManyToOne
-    @JoinColumn (name = "traction_kind_id")
+    @JoinColumn(name = "traction_kind_id")
     private TractionKind tractionKind;
 
     @ManyToOne
@@ -45,6 +45,4 @@ public class LocomotiveCrew {
     private ServiceType serviceType;
 
     private String notes;
-
-
 }

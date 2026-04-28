@@ -25,4 +25,11 @@ public class Employee {
     @ManyToOne
     @JoinColumn(name = "position_id")
     private Position position;
+
+    @Column(name = "is_active")
+    private Boolean isActive;
+
+    @Enumerated(EnumType.ORDINAL)
+    @Column(name = "status_id")
+    private Status status;
 }
