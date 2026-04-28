@@ -76,16 +76,24 @@ async function getEmployeeCountByPositionAndStatus(positionId, statusId) {
 }
 
 async function getTrainDriversAtWork() {
-    train_drivers_at_work_count.innerText = await getEmployeeCountByPositionAndStatus(1, 0);
+    let total = 0;
+    for (const statusId of [0, 1, 2]) {
+        total += await getEmployeeCountByPositionAndStatus(1, statusId);
+    }
+    train_drivers_at_work_count.innerText = total;
 }
 
 async function getTrainDriverAssistantsAtWork() {
-    train_driver_assistants_at_work_count.innerText = await getEmployeeCountByPositionAndStatus(2, 0);
+    let total = 0;
+    for (const statusId of [0, 1, 2]) {
+        total += await getEmployeeCountByPositionAndStatus(2, statusId)
+    }
+    train_driver_assistants_at_work_count.innerText = total;
 }
 
 async function getTrainDriversNotAtWork() {
     let total = 0;
-    for (const statusId of [1, 2, 3, 4, 5, 6, 7]) {
+    for (const statusId of [3, 4, 5, 6, 7]) {
         total += await getEmployeeCountByPositionAndStatus(1, statusId);
     }
     train_drivers_not_at_work_count.innerText = total;
@@ -93,7 +101,7 @@ async function getTrainDriversNotAtWork() {
 
 async function getTrainDriverAssistantsNotAtWork() {
     let total = 0;
-    for (const statusId of [1, 2, 3, 4, 5, 6, 7]) {
+    for (const statusId of [3, 4, 5, 6, 7]) {
         total += await getEmployeeCountByPositionAndStatus(2, statusId)
     }
     train_driver_assistants_not_at_work_count.innerText = total;
