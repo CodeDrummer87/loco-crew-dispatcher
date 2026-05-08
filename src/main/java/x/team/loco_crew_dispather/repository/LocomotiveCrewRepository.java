@@ -4,6 +4,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import x.team.loco_crew_dispather.dto.LocomotiveCrewDto;
+import x.team.loco_crew_dispather.entity.CrewStatus;
 import x.team.loco_crew_dispather.entity.LocomotiveCrew;
 
 import java.util.List;
@@ -37,4 +38,7 @@ public interface LocomotiveCrewRepository extends JpaRepository<LocomotiveCrew, 
                 WHERE l.hasAssistant = false AND l.hasUnderstudy = false
            """)
     Long getSinglePersonCrewCount();
+
+    //Оказывается Spring сам понимает что нужно делать исходя из сигнатуры метода(коммент вместо @Query....)
+    Long countByCrewStatus(CrewStatus crewStatus);
 }
