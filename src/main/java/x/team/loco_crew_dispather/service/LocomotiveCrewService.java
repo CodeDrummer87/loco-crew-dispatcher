@@ -2,6 +2,7 @@ package x.team.loco_crew_dispather.service;
 
 import org.springframework.stereotype.Service;
 import x.team.loco_crew_dispather.dto.LocomotiveCrewDto;
+import x.team.loco_crew_dispather.entity.CrewStatus;
 import x.team.loco_crew_dispather.repository.LocomotiveCrewRepository;
 
 import java.util.List;
@@ -25,6 +26,10 @@ public class LocomotiveCrewService {
 
     public long getSingleDriverCount() {
         return locomotiveCrewRepository.getSinglePersonCrewCount();
+    }
+
+    public Long getCrewCountByStatus(CrewStatus status) {
+        return locomotiveCrewRepository.countByCrewStatus(status);
     }
 }
 

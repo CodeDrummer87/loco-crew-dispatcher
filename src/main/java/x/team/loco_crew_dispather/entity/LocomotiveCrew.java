@@ -44,5 +44,9 @@ public class LocomotiveCrew {
     @JoinColumn(name = "service_type_id")
     private ServiceType serviceType;
 
+    @Enumerated(EnumType.ORDINAL)
+    @Column(name = "crew_status_id")
+    private CrewStatus crewStatus;
+
     private String notes;
 }

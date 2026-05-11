@@ -8,6 +8,8 @@ const train_driver_assistants_not_at_work_count = document.getElementById('s_tch
 const locomotive_crew_count = document.getElementById('s_locomotive_crew_count');
 const single_face_count = document.getElementById('s_single_face_count');
 
+
+
 document.addEventListener('DOMContentLoaded', async function () {
     await getEmployeeCount();
     await getAllPositionsCount();
@@ -18,6 +20,8 @@ document.addEventListener('DOMContentLoaded', async function () {
 
     await getLocomotiveCrewCount();
     await getSingleDriverCount();
+
+    await updateCrewStatusCounts();
 });
 
 async function getEmployeeCount() {
@@ -133,5 +137,35 @@ async function getSingleDriverCount() {
 
     } catch (error) {
         console.error("Ошибка выполнения запроса счетчика бригад в одно лицо: " + error);
+    }
+}
+
+async function getCrewCountByStatus(statusId) {
+    try {
+        const response = await fetch(`http://localhost:8080/api/v1/locomotive-crews/count/state/` +
+            `${statusId}`);
+        if (!response.ok) {
+            throw new Error(`Ошибка: ${response.status}`)
+        }
+        return await response.json();
+    } catch (error) {
+        console.error("Ошибка выполнения запроса статуса бригад!: " + error);
+        return null;
+    }
+}
+
+async function updateCrewStatusCounts() {
+    const workingCount = await getCrewCountByStatus(0);
+    const onCallCount = await getCrewCountByStatus(1);
+    const awaitingCount = await getCrewCountByStatus(2);
+
+    if (workingCount != null) {
+        document.getElementById(`s_crew_working_count`).innerText = workingCount;
+    }
+    if (onCallCount != null) {
+        document.getElementById(`s_crew_on_call_count`).innerText = onCallCount;
+    }
+    if (awaitingCount != null) {
+        document.getElementById(`s_crew_awaiting_count`).innerText = awaitingCount;
     }
 }

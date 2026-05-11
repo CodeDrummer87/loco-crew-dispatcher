@@ -2,9 +2,11 @@ package x.team.loco_crew_dispather.rest;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import x.team.loco_crew_dispather.dto.LocomotiveCrewDto;
+import x.team.loco_crew_dispather.entity.CrewStatus;
 import x.team.loco_crew_dispather.service.LocomotiveCrewService;
 
 import java.util.List;
@@ -32,5 +34,11 @@ public class LocomotiveCrewController {
     @GetMapping("/count/single-driver")
     public ResponseEntity<Long> getSingleDriverCount() {
         return ResponseEntity.ok(locomotiveCrewService.getSingleDriverCount());
+    }
+
+    @GetMapping("/count/state/{id}")
+    public ResponseEntity<Long> getCountByCrewStatus(@PathVariable("id") int id) {
+        CrewStatus status = CrewStatus.values()[id];
+        return ResponseEntity.ok(locomotiveCrewService.getCrewCountByStatus(status));
     }
 }

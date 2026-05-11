@@ -18,5 +18,6 @@ public class LocomotiveCrewDto {
     private String tractionKindTitle;
     private String serviceTypeTitle;
     private String notes;
+    //private String crewStatusTitle;
 }
 
