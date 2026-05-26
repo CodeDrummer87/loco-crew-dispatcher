@@ -19,40 +19,91 @@
         <div class="menu-block">
             <button id="editProfileBtn" class="menu-btn">Редактировать профиль</button>
             <button id="employeesBtn" class="menu-btn">Сотрудники</button>
-            <button id="scheduleBtn" class="menu-btn">График работы нарядчиков</button>
+            <button id="workScheduleBtn" class="menu-btn">График работы нарядчиков</button>
             <button id="orderFileBtn" class="menu-btn">Файл наряда</button>
         </div>
 
         <div class="content-area">
-        </div>
-    </div>
-</div>
 
-<div id="profileModal" class="modal">
-    <div class="modal-content">
-        <span class="close">x</span>
-        <h3>Редактирование профиля</h3>
-        <form id="profileForm">
-            <label>Фамилия</label>
-            <input type="text" id="lastName" placeholder="Введите фамилию">
+            <div id="profileModal" class="modal">
+                <div class="modal-content">
+                    <span class="close">x</span>
+                    <h3>Редактирование профиля</h3>
+                    <form id="profileForm">
+                        <label>Фамилия</label>
+                        <input type="text" id="lastName" placeholder="Введите фамилию">
 
-            <label>Имя</label>
-            <input type="text" id="firstName" placeholder="Введите имя">
+                        <label>Имя</label>
+                        <input type="text" id="firstName" placeholder="Введите имя">
 
-            <label>Отчество</label>
-            <input type="text" id="middleName" placeholder="Введите отчество">
+                        <label>Отчество</label>
+                        <input type="text" id="middleName" placeholder="Введите отчество">
 
-            <label>Должность</label>
-            <input type="text" id="position" placeholder="Введите должность">
+                        <label>Должность</label>
+                        <input type="text" id="position" placeholder="Введите должность">
 
-            <label>Дата вступления в должность</label>
-            <input type="date" id="appointmentDate">
+                        <label>Дата вступления в должность</label>
+                        <input type="date" id="appointmentDate">
 
-            <div class="modal-buttons">
-                <button type="button" id="clearProfileBtn" class="btn-clear">Очистить</button>
-                <button type="submit" id="saveProfileBtn" class="btn-save">Сохранить</button>
+                        <div class="modal-buttons">
+                            <button type="button" id="clearProfileBtn" class="btn-clear">Очистить</button>
+                            <button id="saveProfileBtn" class="btn-save">Сохранить</button>
+                        </div>
+                    </form>
+                </div>
             </div>
-        </form>
+
+            <div id="employeesModal" class="modal">
+                <div class="modal-content">
+                    <span class="close">x</span>
+                    <h3>Сотрудники</h3>
+
+                    <div class="add-employee-wrapper">
+                        <button id="addEmployeeBtn" class="add-employee">Добавить сотрудника</button>
+                    </div>
+
+                    <div id="employeesTableContainer">
+                        <table id="employeesTable" class="data-table">
+                            <thead>
+                            <tr>
+                                <th>ФИО</th>
+                                <th>Таб.№</th>
+                                <th>Стаж</th>
+                            </tr>
+                            </thead>
+                            <tbody id="employeesTableBody">
+                            <tr>
+                                <td colspan="3" class="empty-message">Список пуст</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="modal-buttons">
+                        <button id="closeEmployeesListBtn" class="btn-close">Закрыть список</button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="workScheduleModal" class="modal">
+                <div class="modal-content">
+                    <span class="close">x</span>
+                    <h3>График работы нарядчиков</h3>
+                    <p class="empty-message">Здесь будет таблица графика работы нарядчиков</p>
+                </div>
+            </div>
+
+            <div id="orderFileModal" class="modal">
+                <div class="modal-content">
+                    <span class="close">x</span>
+                    <h3>Файл наряда</h3>
+                    <div id="orderFileContent">
+                        <p class="empty-message">Здесь будет таблица файла наряда</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
     </div>
 </div>
 

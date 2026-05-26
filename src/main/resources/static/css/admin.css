@@ -88,13 +88,17 @@ body {
 }
 
 .btn-clear,
-.btn-save {
+.btn-save,
+.add-employee,
+.btn-close {
     background-color: #182a4d;
     cursor: pointer;
 }
 
 .btn-clear:hover,
-.btn-save:hover {
+.btn-save:hover,
+.add-employee:hover,
+.btn-close:hover {
     background-color:#1f2937;
 }
 
@@ -106,4 +110,29 @@ body {
     font-weight: bold;
     cursor: pointer;
     color: #aaa;
+}
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+    border-radius: 8px;
+    box-shadow: 0 0 0 1px #2b4578;
+    overflow: hidden;
+}
+
+.data-table th,
+.data-table td {
+    border: 1px solid #2b4578;
+    padding: 10px;
+    text-align: left;
+}
+
+.data-table th {
+    background-color: #1f2937;
+    font-weight: bold;
+}
+
+.empty-message {
+    color: #7f8c8d;
 }
