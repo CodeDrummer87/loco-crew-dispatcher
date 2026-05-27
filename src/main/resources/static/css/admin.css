@@ -104,9 +104,9 @@ body {
 
 .close {
     position: absolute;
-    right: 20px;
+    right: 24px;
     top: 15px;
-    font-size: 28px;
+    font-size: 20px;
     font-weight: bold;
     cursor: pointer;
     color: #aaa;
@@ -131,8 +131,4 @@ body {
 .data-table th {
     background-color: #1f2937;
     font-weight: bold;
-}
-
-.empty-message {
-    color: #7f8c8d;
 }
