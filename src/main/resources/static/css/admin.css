@@ -1,0 +1,134 @@
+body {
+    background-color:  #111827;
+}
+
+.admin-container {
+    padding: 30px;
+    width: 90%;
+    max-width: 1200px;
+}
+
+.admin-header {
+    text-align: center;
+    padding-bottom: 15px;
+    margin-bottom: 30px;
+}
+
+.admin-header h2 {
+    margin: 0;
+}
+
+.admin-main {
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.menu-block {
+    flex: 1;
+    min-width: 220px;
+    padding: 5px 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.menu-btn {
+    background-color: #2b4578;
+    color: #ffffff;
+    border: none;
+    padding: 12px 18px;
+    font-size: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    text-align: left;
+    font-weight: bold;
+}
+
+.menu-btn:hover {
+    background-color: #182a4d;
+}
+
+.content-area {
+    flex: 3;
+    background: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    border-radius: 12px;
+    padding: 20px;
+    min-height: 500px;
+    overflow-y: auto;
+}
+
+.content-area .modal-content {
+    margin: 0;
+    padding: 25px;
+    width: auto;
+}
+
+.content-area .modal::before {
+    display: none;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+}
+
+.modal-buttons {
+    display: flex;
+    justify-content: flex-start;
+    gap: 15px;
+    margin-top: 25px;
+}
+
+.btn-clear,
+.btn-save,
+.add-employee,
+.btn-close {
+    background-color: #182a4d;
+    cursor: pointer;
+}
+
+.btn-clear:hover,
+.btn-save:hover,
+.add-employee:hover,
+.btn-close:hover {
+    background-color:#1f2937;
+}
+
+.close {
+    position: absolute;
+    right: 24px;
+    top: 15px;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    color: #aaa;
+}
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+    border-radius: 8px;
+    box-shadow: 0 0 0 1px #2b4578;
+    overflow: hidden;
+}
+
+.data-table th,
+.data-table td {
+    border: 1px solid #2b4578;
+    padding: 10px;
+    text-align: left;
+}
+
+.data-table th {
+    background-color: #1f2937;
+    font-weight: bold;
+}

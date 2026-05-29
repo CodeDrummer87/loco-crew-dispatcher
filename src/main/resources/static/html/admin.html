@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Личный кабинет администратора</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/admin.css">
+</head>
+<body>
+
+<div class="admin-container">
+    <div class="admin-header">
+        <h2>Администратор: <span id="adminName">данные отсутствуют</span></h2>
+    </div>
+
+    <div class="admin-main">
+
+        <div class="menu-block">
+            <button id="editProfileBtn" class="menu-btn">Редактировать профиль</button>
+            <button id="employeesBtn" class="menu-btn">Сотрудники</button>
+            <button id="workScheduleBtn" class="menu-btn">График работы нарядчиков</button>
+            <button id="orderFileBtn" class="menu-btn">Файл наряда</button>
+        </div>
+
+        <div class="content-area">
+
+            <div id="profileModal" class="modal">
+                <div class="modal-content">
+                    <span class="close">x</span>
+                    <h3>Редактирование профиля</h3>
+                    <form id="profileForm">
+
+                        <input type="text" id="lastName" placeholder="Введите фамилию">
+
+                        <input type="text" id="firstName" placeholder="Введите имя">
+
+                        <input type="text" id="middleName" placeholder="Введите отчество">
+
+                        <input type="text" id="position" placeholder="Введите должность">
+
+                        <input type="date" id="appointmentDate">
+
+                        <div class="modal-buttons">
+                            <button type="button" id="clearProfileBtn" class="btn-clear">Очистить</button>
+                            <button id="saveProfileBtn" class="btn-save">Сохранить</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div id="employeesModal" class="modal">
+                <div class="modal-content">
+                    <span class="close">x</span>
+                    <h3>Сотрудники</h3>
+
+                    <div class="add-employee-wrapper">
+                        <button id="addEmployeeBtn" class="add-employee">Добавить сотрудника</button>
+                    </div>
+
+                    <div id="employeesTableContainer">
+                        <table id="employeesTable" class="data-table">
+                            <thead>
+                            <tr>
+                                <th>ФИО</th>
+                                <th>Таб.№</th>
+                                <th>Стаж</th>
+                            </tr>
+                            </thead>
+                            <tbody id="employeesTableBody">
+                            <tr>
+                                <td colspan="3" class="empty-message">Список пуст</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="modal-buttons">
+                        <button id="closeEmployeesListBtn" class="btn-close">Закрыть список</button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="workScheduleModal" class="modal">
+                <div class="modal-content">
+                    <span class="close">x</span>
+                    <h3>График работы нарядчиков</h3>
+                    <p class="empty-message">Здесь будет таблица графика работы нарядчиков</p>
+                </div>
+            </div>
+
+            <div id="orderFileModal" class="modal">
+                <div class="modal-content">
+                    <span class="close">x</span>
+                    <h3>Файл наряда</h3>
+                    <div id="orderFileContent">
+                        <p class="empty-message">Здесь будет таблица файла наряда</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script src="../js/admin.js"></script>
+</body>
+</html>
