@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Личный кабинет нарядчика</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/user.css">
+</head>
+<body>
+
+<div class="user-container">
+    <div class="user-header">
+        <h2>Нарядчик: <span id="userName">данные отсутствуют</span></h2>
+    </div>
+
+    <div class="user-main">
+
+        <div class="menu-block">
+            <button id="dashboardBtn" class="menu-btn">Дашборд</button>
+            <button id="employeesBtn" class="menu-btn">Сотрудники</button>
+            <button id="crewsBtn" class="menu-btn">Бригады</button>
+            <button id="statisticsBtn" class="menu-btn">Статистика</button>
+        </div>
+
+        <div class="content-area">
+
+            <div id="dashboardModal" class="modal">
+                <div class="modal-content">
+                    <span class="close">x</span>
+                    <h3>Файл наряда</h3>
+                    <div id="dashboardContent">
+                        <p class="empty-message">Здесь будет дашборд</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script src="../js/admin.js"></script>
+</body>
+</html>
