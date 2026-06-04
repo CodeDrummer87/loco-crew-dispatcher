@@ -5,16 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Личный кабинет нарядчика</title>
     <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/user.css">
 </head>
 <body>
 
-<div class="user-container">
-    <div class="user-header">
+<div class="modal-container">
+    <div class="modal-header">
         <h2>Нарядчик: <span id="userName">данные отсутствуют</span></h2>
     </div>
 
-    <div class="user-main">
+    <div class="modal-main">
 
         <div class="menu-block">
             <button id="dashboardBtn" class="menu-btn">Дашборд</button>
@@ -35,10 +34,74 @@
                 </div>
             </div>
 
+            <div id="employeesModal" class="modal">
+                <div class="modal-content">
+                    <span class="close">x</span>
+                    <h3>Сотрудники</h3>
+
+                    <div id="employeesTableContainer">
+                        <table id="employeesTable" class="data-table">
+                            <thead>
+                            <tr>
+                                <th>Таб.№</th>
+                                <th>Фамилия</th>
+                                <th>И.О.</th>
+                                <th>должность</th>
+                                <th>личный статус</th>
+                                <th>статус бригады</th>
+                            </tr>
+                            </thead>
+                            <tbody id="employeesTableBody">
+                            <tr>
+                                <td colspan="6" class="empty-message">Список сотрудников пуст</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div id="crewsModal" class="modal">
+                <div class="modal-content">
+                    <span class="close">x</span>
+                    <h3>Бригады</h3>
+
+                    <div id="crewsTableContainer">
+                        <table id="crewsTable" class="data-table">
+                            <thead>
+                            <tr>
+                                <th>ТЧМ</th>
+                                <th>ТЧПМ</th>
+                                <th>Третье лицо</th>
+                                <th>Вид тяги</th>
+                                <th>Вид движения</th>
+                                <th>Статус бригады</th>
+                            </tr>
+                            </thead>
+                            <tbody id="crewsTableBody">
+                            <tr>
+                                <td colspan="6" class="empty-message">Список бригад пуст</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div id="statisticsModal" class="modal">
+                <div class="modal-content">
+                    <span class="close">x</span>
+                    <h3>Статистика</h3>
+                    <div id="statisticsContent">
+                        <p class="empty-message">Здесь будут статистические данные</p>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 </div>
 
-<script src="../js/admin.js"></script>
+<script src="../js/user.js"></script>
 </body>
 </html>

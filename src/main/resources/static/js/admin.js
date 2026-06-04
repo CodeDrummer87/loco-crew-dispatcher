@@ -27,8 +27,7 @@ let currentOpenModal = null;
 document.addEventListener('DOMContentLoaded', function () {
 
     // функция для открытия модального окна
-    function openModal(modal) {
-
+    function openModal(modal, activeButton) {
         // закрываем предыдущее открытое модальное окно, если оно есть
         if (currentOpenModal) {
             closeModal(currentOpenModal);
@@ -43,6 +42,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // запоминаем текущее открытое окно
         currentOpenModal = modal;
+
+        // устанавливаем активную (нажатую) кнопку
+        setActiveButton(activeButton);
     }
 
     // функция для закрытия модального окна
@@ -57,27 +59,49 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
+    // функция для установки активности на конкретную кнопку
+    function setActiveButton(activeButton) {
+        removeActiveClassFromButtons();
+        if (activeButton) {
+            activeButton.classList.add('active');
+        }
+    }
+
+    // функция для снятия активности со всех кнопок
+    function removeActiveClassFromButtons() {
+        // создаем массив кнопок
+        const buttons = [editProfileBtn, employeesBtn, workScheduleBtn, orderFileBtn];
+
+        // проходим по всем кнопкам
+        for (let i = 0; i < buttons.length; i++) {
+            // получаем текущую кнопку из массива
+            let btn = buttons[i];
+
+            // удаляем у кнопки класс active
+            btn.classList.remove('active');
+        }
+    }
+
     // обработчики событий на кнопки меню
     // кнопка Редактировать профиль открывает окно profileModal
     editProfileBtn.onclick = function () {
-        openModal(profileModal);
+        openModal(profileModal, editProfileBtn);
     };
 
     // кнопка Сотрудники открывает окно employeesModal
     employeesBtn.onclick = function () {
-        openModal(employeesModal);
+        openModal(employeesModal, employeesBtn);
     };
 
     // кнопка График работы нарядчиков открывает окно workScheduleModal
     workScheduleBtn.onclick = function () {
-        openModal(workScheduleModal);
+        openModal(workScheduleModal, workScheduleBtn);
     };
 
     // кнопка Файл наряда открывает окно orderFileModal
     orderFileBtn.onclick = function () {
-        openModal(orderFileModal);
+        openModal(orderFileModal, orderFileBtn);
     };
-
 
     // функция для назначения обработчика закрытия на кнопку (крестик)
     function closeButton(button) {
