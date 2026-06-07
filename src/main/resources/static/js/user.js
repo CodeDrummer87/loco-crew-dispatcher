@@ -1,20 +1,14 @@
 // получаем ссылки на модальные окна по их Id на странице
-const profileModal = document.getElementById('profileModal'); // окно редактирования профиля
-const employeesModal = document.getElementById('employeesModal'); // список нарядчиков
-const workScheduleModal = document.getElementById('workScheduleModal'); // график работы нарядчиков
-const orderFileModal = document.getElementById('orderFileModal'); // таблица файла наряда
+const dashboardModal = document.getElementById('dashboardModal'); // окно дашборда
+const employeesModal = document.getElementById('employeesModal'); // список сотрудников
+const crewsModal = document.getElementById('crewsModal'); // список локомотивных бригад
+const statisticsModal = document.getElementById('statisticsModal'); // окно статистики
 
 // получаем ссылки на кнопки в меню (слева), которые открывают соответствующие окна
-const editProfileBtn = document.getElementById('editProfileBtn');
+const dashboardBtn = document.getElementById('dashboardBtn');
 const employeesBtn = document.getElementById('employeesBtn');
-const workScheduleBtn = document.getElementById('workScheduleBtn');
-const orderFileBtn = document.getElementById('orderFileBtn');
-
-// кнопка Очистить в окне редактирования профиля
-const clearProfileBtn = document.getElementById('clearProfileBtn');
-
-// кнопка Закрыть список в окне Сотрудники
-const closeEmployeesListBtn = document.getElementById('closeEmployeesListBtn');
+const crewsBtn = document.getElementById('crewsBtn');
+const statisticsBtn = document.getElementById('statisticsBtn');
 
 // получаем крестики для закрытия модальных окон
 const closeButtons = document.querySelectorAll('.close');
@@ -70,7 +64,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // функция для снятия активности со всех кнопок
     function removeActiveClassFromButtons() {
         // создаем массив кнопок
-        const buttons = [editProfileBtn, employeesBtn, workScheduleBtn, orderFileBtn];
+        const buttons = [dashboardBtn, employeesBtn, crewsBtn, statisticsBtn];
 
         // проходим по всем кнопкам
         for (let i = 0; i < buttons.length; i++) {
@@ -83,9 +77,9 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // обработчики событий на кнопки меню
-    // кнопка Редактировать профиль открывает окно profileModal
-    editProfileBtn.onclick = function () {
-        openModal(profileModal, editProfileBtn);
+    // кнопка Дашборд открывает окно dashboardModal
+    dashboardBtn.onclick = function () {
+        openModal(dashboardModal, dashboardBtn);
     };
 
     // кнопка Сотрудники открывает окно employeesModal
@@ -93,14 +87,14 @@ document.addEventListener('DOMContentLoaded', function () {
         openModal(employeesModal, employeesBtn);
     };
 
-    // кнопка График работы нарядчиков открывает окно workScheduleModal
-    workScheduleBtn.onclick = function () {
-        openModal(workScheduleModal, workScheduleBtn);
+    // кнопка Бригады открывает окно crewsModal
+    crewsBtn.onclick = function () {
+        openModal(crewsModal, crewsBtn);
     };
 
-    // кнопка Файл наряда открывает окно orderFileModal
-    orderFileBtn.onclick = function () {
-        openModal(orderFileModal, orderFileBtn);
+    // кнопка Статистика открывает окно statisticsModal
+    statisticsBtn.onclick = function () {
+        openModal(statisticsModal, statisticsBtn);
     };
 
     // функция для назначения обработчика закрытия на кнопку (крестик)
@@ -121,23 +115,14 @@ document.addEventListener('DOMContentLoaded', function () {
         closeButton(closeButtons[i]);
     }
 
-    // обработчик для кнопки Очистить в окне редактирования профиля
-    clearProfileBtn.onclick = function () {
-        // находим все инпуты
-        let inputs = document.querySelectorAll('input');
-
-        // перебираем каждый инпут
-        for (let input of inputs) {
-            // делаем значение инпута пустой строкой
-            input.value = '';
-        }
-    };
-
-    // обработчик для кнопки Закрыть список в окне Сотрудники
-    if (closeEmployeesListBtn) {
-        closeEmployeesListBtn.onclick = function () {
-            // закрываем окно сотрудников
-            closeModal(employeesModal);
-        };
+    // Открываем окно дашборда по умолчанию
+    if (dashboardModal) {
+        dashboardModal.style.display = 'block';
+        dashboardModal.style.position = 'relative';
+        currentOpenModal = dashboardModal;
+    }
+    // делаем кнопку Дашборд активной
+    if (dashboardBtn) {
+        dashboardBtn.classList.add('active');
     }
 });
