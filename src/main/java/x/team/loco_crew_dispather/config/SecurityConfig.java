@@ -30,9 +30,9 @@ public class SecurityConfig {
     }
 
     @Bean
-    public DaoAuthenticationProvider authenticationProvider() {
+    public DaoAuthenticationProvider authenticationProvider(PasswordEncoder passwordEncoder) {
         DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider(customUserDetailService);
-        authProvider.setPasswordEncoder(passwordEncoder());
+        authProvider.setPasswordEncoder(passwordEncoder);
         return authProvider;
     }
 
@@ -62,7 +62,7 @@ public class SecurityConfig {
                                 "/api/v1/register").hasRole("ADMIN") //.:: Админка требует наличие роли ADMIN
                         .anyRequest().authenticated() //.:: Всё остальное требует авторизации
                 )
-                .authenticationProvider(authenticationProvider())
+                //.authenticationProvider(authenticationProvider())
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class); //.:: Добавляем JWT фильтр
 
         return http.build();

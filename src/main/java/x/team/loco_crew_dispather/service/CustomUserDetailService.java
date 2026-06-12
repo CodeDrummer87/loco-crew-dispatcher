@@ -21,7 +21,7 @@ public class CustomUserDetailService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         x.team.loco_crew_dispather.entity.User user = userRepository.findByUsername(username)
-                .orElseThrow(() -> new UsernameNotFoundException("Пользователь с ником" + username + "не найден!"));
+                .orElseThrow(() -> new UsernameNotFoundException("Пользователь с ником " + username + " не найден!"));
 
         return new User(
                 user.getUsername(),
