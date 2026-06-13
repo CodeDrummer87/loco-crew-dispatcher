@@ -28,15 +28,22 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-flyway'
 	implementation 'org.springframework.boot:spring-boot-starter-webmvc'
+	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'org.flywaydb:flyway-database-postgresql'
 	implementation "org.springdoc:springdoc-openapi-starter-webmvc-ui:$openAPIVersion"
 	implementation "org.apache.tika:tika-core:$tikaVersion"
+	//JWT
+	implementation "io.jsonwebtoken:jjwt-api:$jsonWebTokenVersion"
+	runtimeOnly "io.jsonwebtoken:jjwt-impl:$jsonWebTokenVersion"
+	runtimeOnly "io.jsonwebtoken:jjwt-jackson:$jsonWebTokenVersion"
+
 	compileOnly 'org.projectlombok:lombok'
 	runtimeOnly 'org.postgresql:postgresql'
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-data-jpa-test'
 	testImplementation 'org.springframework.boot:spring-boot-starter-flyway-test'
 	testImplementation 'org.springframework.boot:spring-boot-starter-webmvc-test'
+	testImplementation 'org.springframework.boot:spring-boot-starter-security-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
 
