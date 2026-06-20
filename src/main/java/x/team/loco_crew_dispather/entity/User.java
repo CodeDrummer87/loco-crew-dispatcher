@@ -29,15 +29,15 @@ public class User {
     @Column(nullable = false)
     private String role;
 
-    @Column(nullable = false, length = 200)
-    private String fullname;
+    @Column(name = "full_name", nullable = false)
+    private String fullName;
 
-    @Column(unique = true, nullable = false)
+    @Column(name = "personnel_number", unique = true, nullable = false)
     private Integer personnelNumber;
 
-    @Column(nullable = false)
+    @Column(name = "date_of_employment", nullable = false)
     private LocalDate dateOfEmployment;
 
-    @Column(nullable = false)
+    @Column(name = "is_active", nullable = false)
     private Boolean isActive = true;
 }

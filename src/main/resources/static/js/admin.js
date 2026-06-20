@@ -23,6 +23,9 @@ const closeButtons = document.querySelectorAll('.close');
 // она нужна, чтобы при открытии нового окна автоматически закрывать предыдущее
 let currentOpenModal = null;
 
+// переменная для доступа к телу таблицы
+const userTableBody = document.getElementById('usersTableBody')
+
 // cобытие, которое срабатывает, когда вcя HTML-страница загрузилась
 document.addEventListener('DOMContentLoaded', function () {
 
@@ -89,8 +92,19 @@ document.addEventListener('DOMContentLoaded', function () {
     };
 
     // кнопка Сотрудники открывает окно employeesModal
-    employeesBtn.onclick = function () {
+    employeesBtn.onclick = async function () {
         openModal(employeesModal, employeesBtn);
+
+        // загружаем список нарядчиков в переменную users
+        let users = await getAllUsers();
+        // очищаем tbody таблицы от предыдущих строк
+        userTableBody.innerHTML = '';
+
+        // создаём нужное количество строк
+        for (let i = 0; i < users.length; i++) {
+            // добавляем к tbody созданную строку
+            userTableBody.appendChild(createRow(users[i]))
+        }
     };
 
     // кнопка График работы нарядчиков открывает окно workScheduleModal
@@ -139,5 +153,62 @@ document.addEventListener('DOMContentLoaded', function () {
             // закрываем окно сотрудников
             closeModal(employeesModal);
         };
+    }
+
+    // функция для получения списка нарядчиков
+    async function getAllUsers() {
+        try {
+            const response = await fetch(`http://localhost:8080/api/v1/users`)
+
+            if (!response.ok) {
+                throw new Error(`HTTP Error! status: ${response.status}`);
+            }
+
+            const pageResult = await response.json();
+
+            // возвращаем пустой массив, если ответ некорректный
+            return Array.isArray(pageResult.content) ? pageResult.content : [];
+
+        } catch (error) {
+            console.error(`Ошибка выполнения запроса на получение списка нарядчиков` + error);
+        }
+    }
+
+    // функция для расчета стажа в годах
+    function calculateWorkExperience(dateOfEmployment) {
+
+        // получаем дату трудоустройства
+        const employmentDate = new Date(dateOfEmployment);
+        // получаем текущую дату
+        const currentDate = new Date();
+
+        // расчитываем разницу в годах
+        let years = currentDate.getFullYear() - employmentDate.getFullYear();
+        // и разницу в месяцах
+        const months = currentDate.getMonth() - employmentDate.getMonth();
+
+        // корректируем, если день трудоустройства ещё не наступил в этом году
+        if (months < 0 || (months === 0 && currentDate.getDate() < employmentDate.getDate())) {
+            years--;
+        }
+        return years;
+    }
+
+    // функция, создающая ячейку строки таблицы и вставляющая значение в эту ячейку
+    function createTd(value) {
+        const td = document.createElement('td');
+        td.innerText = value;
+        return td;
+    }
+
+    // функция создания строки таблицы
+    function createRow(user) {
+        const tr = document.createElement('tr');
+        const experience = calculateWorkExperience(user.dateOfEmployment);
+
+        tr.appendChild(createTd(user.fullName));
+        tr.appendChild(createTd(user.personnelNumber));
+        tr.appendChild(createTd(experience));
+        return tr;
     }
 });

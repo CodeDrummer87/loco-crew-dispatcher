@@ -1,10 +1,10 @@
 ALTER TABLE users
-    ADD COLUMN fullname VARCHAR(200) NOT NULL,
+    ADD COLUMN full_name VARCHAR(200) NOT NULL,
     ADD COLUMN personnel_number INTEGER UNIQUE NOT NULL,
     ADD COLUMN date_of_employment DATE NOT NULL,
     ADD COLUMN is_active BOOLEAN DEFAULT true;
 
-INSERT INTO users (username, password, role, fullname, personnel_number, date_of_employment, is_active)
+INSERT INTO users (username, password, role, full_name, personnel_number, date_of_employment, is_active)
 VALUES
     ('volkovam', 'Volkov4564!', 'ADMIN', 'Волков Александр Михайлович',
      1563, '1999-01-15', true),
