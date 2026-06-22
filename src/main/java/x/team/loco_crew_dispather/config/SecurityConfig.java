@@ -48,13 +48,14 @@ public class SecurityConfig {
                 //.csrf(AbstractHttpConfigurer::disable) //.:: либо можно написать более лаконично
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)) //.:: Без сессий
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/","/**/*.html","/**/*.css","/**/*.js").permitAll()
+                        .requestMatchers("/", "/**/*.html", "/**/*.css", "/**/*.js").permitAll()
                         .requestMatchers("/swagger-ui/**",
-                                            "/swagger-ui.html",
+                                "/swagger-ui.html",
                                 "/v3/api-docs/**",
                                 "/swagger-resourses/**",
                                 "/webjars/**",
                                 "/api/v1/employees/**",
+                                "/api/v1/users/**",
                                 "/api/v1/locomotive-crews/**",
                                 "/login")
                         .permitAll()//.:: Страница входа доступна всем
