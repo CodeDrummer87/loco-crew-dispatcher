@@ -6,7 +6,7 @@ ALTER TABLE users
 
 INSERT INTO users (username, password, role, full_name, personnel_number, date_of_employment, is_active)
 VALUES
-    ('volkovam', 'Volkov4564!', 'ADMIN', 'Волков Александр Михайлович',
+    ('admin', 'admin', 'ADMIN', 'Волков Александр Михайлович',
      1563, '1999-01-15', true),
     ('belovaed', 'Belova@234347rzd', 'USER', 'Белова Екатерина Дмитриевна',
      1564, '2004-03-20', true),
