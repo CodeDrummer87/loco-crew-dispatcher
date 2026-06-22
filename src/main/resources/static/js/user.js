@@ -17,6 +17,8 @@ const closeButtons = document.querySelectorAll('.close');
 // она нужна, чтобы при открытии нового окна автоматически закрывать предыдущее
 let currentOpenModal = null;
 
+const employeeTableBody = document.getElementById('employeesTableBody');
+
 // cобытие, которое срабатывает, когда вcя HTML-страница загрузилась
 document.addEventListener('DOMContentLoaded', function () {
 
@@ -83,8 +85,13 @@ document.addEventListener('DOMContentLoaded', function () {
     };
 
     // кнопка Сотрудники открывает окно employeesModal
-    employeesBtn.onclick = function () {
+    employeesBtn.onclick = async function () {
         openModal(employeesModal, employeesBtn);
+        let employees = await getAllEmployees();
+        employeeTableBody.innerHTML = '';
+        for (let i = 0; i < employees.length; i++) {
+            employeeTableBody.appendChild(createRow(employees[i]));
+        }
     };
 
     // кнопка Бригады открывает окно crewsModal
@@ -126,3 +133,34 @@ document.addEventListener('DOMContentLoaded', function () {
         dashboardBtn.classList.add('active');
     }
 });
+
+async function getAllEmployees(){
+    try {
+        const response = await fetch("http://localhost:8080/api/v1/employees")
+
+        if (!response.ok) {
+            throw new Error(`HTTP Error! status: ${response.status}`);
+        }
+
+        const pageResult = await response.json();
+        return Array.isArray(pageResult.content) ? pageResult.content : [];
+    } catch (error) {
+        console.error("Ошибка выполнения запроса на получение списка сотрудников: " + error);
+    }
+
+}
+
+function createTd(value) {
+    const td = document.createElement('td');
+    td.innerText = value;
+    return td;
+}
+
+function createRow(employee) {
+    const tr = document.createElement('tr');
+    tr.appendChild(createTd(employee.personnelNumber));
+    tr.appendChild(createTd(employee.fullName));
+    tr.appendChild(createTd(employee.positionAbbreviate));
+    tr.appendChild(createTd(employee.statusTitle))
+    return tr;
+}

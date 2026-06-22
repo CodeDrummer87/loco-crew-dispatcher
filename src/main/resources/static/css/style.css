@@ -276,3 +276,39 @@ button:hover {
     background-color: #1f2937;
     font-weight: bold;
 }
+
+/* ----- пагинация таблиц ----- */
+.pagination-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.pagination-controls button {
+    padding: 5px 15px;
+    cursor: pointer;
+    background-color: #2b4578;  /* чтобы кнопки были в стиле остальных */
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.pagination-controls button:hover {
+    background-color: #182a4d;
+}
+
+.pagination-controls button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    background-color: #4a6a9a; /* чуть светлее, чтобы было видно, что неактивна */
+}
+
+.pagination-controls span {
+    color: #ffffff;
+    font-size: 14px;
+    background: transparent; /* убираем лишний фон, если он был у span */
+    padding: 0;
+}
