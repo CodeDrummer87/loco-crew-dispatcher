@@ -61,7 +61,8 @@ public class SecurityConfig {
                         .permitAll()//.:: Страница входа доступна всем
                         .requestMatchers("/api/v1/admin",
                                 "/api/v1/register").hasRole("ADMIN") //.:: Админка требует наличие роли ADMIN
-                        .anyRequest().authenticated() //.:: Всё остальное требует авторизации
+                        .anyRequest().permitAll()
+                        //authenticated() //.:: Всё остальное требует авторизации
                 )
                 //.authenticationProvider(authenticationProvider())
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class); //.:: Добавляем JWT фильтр

@@ -19,8 +19,9 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     @Query("""
               SELECT NEW  x.team.loco_crew_dispather.dto.UserDto(u.id, u.fullName, 
-                          u.personnelNumber, u.dateOfEmployment)
+                          u.personnelNumber, u.dateOfEmployment, p.title)
                FROM User u
+               LEFT JOIN u.position p
                WHERE u.isActive = true
             """)
     Page<UserDto> getAllUsers(Pageable pageable);

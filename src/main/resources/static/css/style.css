@@ -276,3 +276,25 @@ button:hover {
     background-color: #1f2937;
     font-weight: bold;
 }
+/* Пагинация */
+.page-btn {
+    padding: 6px 14px;
+    background-color: #2b4578;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+.page-btn:hover:not(:disabled) {
+    background-color: #182a4d;
+}
+.page-btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+#pageInfo {
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+}

@@ -14,4 +14,5 @@ public class UserDto {
     private String fullName;
     private Integer personnelNumber;
     private LocalDate dateOfEmployment;
+    private String positionTitle;
 }
