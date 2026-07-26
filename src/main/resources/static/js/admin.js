@@ -174,7 +174,7 @@ document.addEventListener('DOMContentLoaded', function () {
 // Новая версия: возвращает объект { users, totalPages, currentPage }
 async function getAllUsers(page = 0) {
     try {
-        const size = 8; // количество записей на одной странице
+        const size = 5; // количество записей на одной странице
         const response = await fetch(
             `http://localhost:8080/api/v1/users?page=${page}&size=${size}&sortBy=fullName`
         );
