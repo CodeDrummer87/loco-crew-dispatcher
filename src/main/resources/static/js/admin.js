@@ -26,6 +26,9 @@ let currentOpenModal = null;
 // переменная для доступа к телу таблицы
 const userTableBody = document.getElementById('usersTableBody')
 
+// текущая страница (начинается с 0)
+let currentPage = 0;
+
 // cобытие, которое срабатывает, когда вcя HTML-страница загрузилась
 document.addEventListener('DOMContentLoaded', function () {
 
@@ -94,18 +97,37 @@ document.addEventListener('DOMContentLoaded', function () {
     // кнопка Сотрудники открывает окно employeesModal
     employeesBtn.onclick = async function () {
         openModal(employeesModal, employeesBtn);
-
-        // загружаем список нарядчиков в переменную users
-        let users = await getAllUsers();
-        // очищаем tbody таблицы от предыдущих строк
-        userTableBody.innerHTML = '';
-
-        // создаём нужное количество строк
-        for (let i = 0; i < users.length; i++) {
-            // добавляем к tbody созданную строку
-            userTableBody.appendChild(createRow(users[i]))
-        }
+        currentPage = 0; // всегда сбрасываем на первую страницу при открытии
+        await renderUserTable(currentPage);
     };
+
+        // // загружаем список нарядчиков в переменную users
+        // let users = await getAllUsers();
+        // // очищаем tbody таблицы от предыдущих строк
+        // userTableBody.innerHTML = '';
+        //
+        // // создаём нужное количество строк
+        // for (let i = 0; i < users.length; i++) {
+        //     // добавляем к tbody созданную строку
+        //     userTableBody.appendChild(createRow(users[i]))
+        // }
+
+    // Обработчики пагинации
+    document.getElementById('prevPageBtn').addEventListener('click', async function () {
+        if (currentPage > 0) {
+            currentPage--;
+            await renderUserTable(currentPage);
+        }
+    });
+
+    document.getElementById('nextPageBtn').addEventListener('click', async function () {
+        const data = await getAllUsers(currentPage + 1);
+        if (currentPage < data.totalPages - 1) {
+            currentPage++;
+            await renderUserTable(currentPage);
+        }
+    });
+
 
     // кнопка График работы нарядчиков открывает окно workScheduleModal
     workScheduleBtn.onclick = function () {
@@ -145,21 +167,17 @@ document.addEventListener('DOMContentLoaded', function () {
             // делаем значение инпута пустой строкой
             input.value = '';
         }
-    };
-
-    // обработчик для кнопки Закрыть список в окне Сотрудники
-    if (closeEmployeesListBtn) {
-        closeEmployeesListBtn.onclick = function () {
-            // закрываем окно сотрудников
-            closeModal(employeesModal);
-        };
-    }
+};
 });
 
 // функция для получения списка нарядчиков
-async function getAllUsers() {
+// Новая версия: возвращает объект { users, totalPages, currentPage }
+async function getAllUsers(page = 0) {
     try {
-        const response = await fetch(`http://localhost:8080/api/v1/users`)
+        const size = 5; // количество записей на одной странице
+        const response = await fetch(
+            `http://localhost:8080/api/v1/users?page=${page}&size=${size}&sortBy=fullName`
+        );
 
         if (!response.ok) {
             throw new Error(`HTTP Error! status: ${response.status}`);
@@ -167,11 +185,62 @@ async function getAllUsers() {
 
         const pageResult = await response.json();
 
-        // возвращаем пустой массив, если ответ некорректный
-        return Array.isArray(pageResult.content) ? pageResult.content : [];
-
+        return {
+            users: Array.isArray(pageResult.content) ? pageResult.content : [],
+            totalPages: pageResult.totalPages || 1,
+            currentPage: pageResult.number || 0
+        };
     } catch (error) {
-        console.error(`Ошибка выполнения запроса на получение списка нарядчиков` + error);
+        console.error(`Ошибка: ` + error);
+        return { users: [], totalPages: 1, currentPage: 0 };
+    }
+}
+
+async function renderUserTable(page) {
+    const data = await getAllUsers(page);
+    const users = data.users;
+    const totalPages = data.totalPages;
+    const currentPageFromServer = data.currentPage;
+
+    // Очищаем таблицу
+    userTableBody.innerHTML = '';
+
+    // Если пользователей нет
+    if (users.length === 0) {
+        userTableBody.innerHTML = `
+            <tr><td colspan="4" class="empty-message">Список пользователей пуст</td></tr>
+        `;
+    } else {
+        // Создаём строки
+        for (let i = 0; i < users.length; i++) {
+            userTableBody.appendChild(createRow(users[i]));
+        }
+    }
+
+    // Обновляем пагинацию
+    updatePagination(currentPageFromServer, totalPages);
+}
+
+function updatePagination(current, total) {
+    const prevBtn = document.getElementById('prevPageBtn');
+    const nextBtn = document.getElementById('nextPageBtn');
+    const pageInfo = document.getElementById('pageInfo');
+
+    // Обновляем текст "Страница X/Y"
+    pageInfo.innerText = `Страница ${current + 1}/${total}`;
+
+    // Кнопка "Назад" — неактивна на первой странице
+    if (current === 0) {
+        prevBtn.disabled = true;
+    } else {
+        prevBtn.disabled = false;
+    }
+
+    // Кнопка "Вперёд" — неактивна на последней странице
+    if (current >= total - 1) {
+        nextBtn.disabled = true;
+    } else {
+        nextBtn.disabled = false;
     }
 }
 
@@ -209,6 +278,7 @@ function createRow(user) {
 
     tr.appendChild(createTd(user.fullName));
     tr.appendChild(createTd(user.personnelNumber));
+    tr.appendChild(createTd(user.positionTitle || '—'));
     tr.appendChild(createTd(experience));
     return tr;
 }

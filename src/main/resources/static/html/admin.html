@@ -55,7 +55,6 @@
 
                     <div class="modal-buttons">
                         <button id="addEmployeeBtn" class="add-employee">Добавить сотрудника</button>
-                        <button id="closeEmployeesListBtn" class="btn-close">Закрыть список</button>
                     </div>
 
                     <div id="usersTableContainer">
@@ -64,6 +63,7 @@
                             <tr>
                                 <th>ФИО</th>
                                 <th>Таб.№</th>
+                                <th>Должность</th>
                                 <th>Стаж, лет</th>
                             </tr>
                             </thead>
@@ -73,6 +73,12 @@
                             </tr>
                             </tbody>
                         </table>
+                        <!-- Пагинация -->
+                        <div id="paginationControls">
+                            <button id="prevPageBtn" class="page-btn">Назад</button>
+                            <span id="pageInfo">Страница 1/1</span>
+                            <button id="nextPageBtn" class="page-btn">Вперёд</button>
+                        </div>
                     </div>
 
                 </div>
