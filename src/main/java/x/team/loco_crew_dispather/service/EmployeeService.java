@@ -1,5 +1,9 @@
 package x.team.loco_crew_dispather.service;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import x.team.loco_crew_dispather.dto.EmployeeDto;
 import x.team.loco_crew_dispather.entity.Status;
@@ -19,8 +23,9 @@ public class EmployeeService {
         return employeeRepository.count();
     }
 
-    public List<EmployeeDto> getEmployeeList() {
-        return employeeRepository.getAllEmployees();
+    public Page<EmployeeDto> getEmployeePage(int page, int size, String sortBy) {
+        Pageable pageable = PageRequest.of(page, size, Sort.by(sortBy).ascending());
+        return employeeRepository.getAllEmployees(pageable);
     }
 
     public long getEmployeesByPosition(Long positionId) {

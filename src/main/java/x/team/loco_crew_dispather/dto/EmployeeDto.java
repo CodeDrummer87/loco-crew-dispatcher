@@ -15,18 +15,18 @@ public class EmployeeDto {
     private Integer personnelNumber;
     private String positionTitle;
     private String positionAbbreviate;
-    private Boolean isActive;
+    //private Boolean isActive;
     private String statusTitle;
 
     public EmployeeDto(Long id, String fullName, Integer personnelNumber,
-                       String positionTitle, String positionAbbreviate, Boolean isActive,
+                       String positionTitle, String positionAbbreviate, //Boolean isActive,
                        Status statusTitle) {
         this.id = id;
         this.fullName = fullName;
         this.personnelNumber = personnelNumber;
         this.positionTitle = positionTitle;
         this.positionAbbreviate = positionAbbreviate;
-        this.isActive = isActive;
+        //this.isActive = isActive;
         this.statusTitle = statusTitle.getTitle();
     }
 }

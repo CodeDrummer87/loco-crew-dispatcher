@@ -1,10 +1,10 @@
 package x.team.loco_crew_dispather.rest;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import x.team.loco_crew_dispather.entity.Status;
 import x.team.loco_crew_dispather.service.EmployeeService;
 import x.team.loco_crew_dispather.dto.EmployeeDto;
@@ -27,8 +27,15 @@ public class EmployeeController {
     }
 
     @GetMapping()
-    public ResponseEntity<List<EmployeeDto>> findAllEmployees() {
-        return ResponseEntity.ok((employeeService.getEmployeeList()));
+    public ResponseEntity<Page<EmployeeDto>> findAllEmployees(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "8") int size,
+            @RequestParam(defaultValue = "fullName") String sortBy) {
+
+        if (page < 0) page = 0;
+        if (size <1 || size > 50) size = 8;
+
+        return ResponseEntity.ok(employeeService.getEmployeePage(page, size, sortBy));
     }
 
     @GetMapping("/count/position/{id}")
