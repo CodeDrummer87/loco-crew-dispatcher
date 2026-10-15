@@ -6,9 +6,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import x.team.loco_crew_dispather.util.CrewOrderParser;
 
 @SpringBootApplication
-public class LocoCrewDispatherApplication implements CommandLineRunner {
+public class LocoCrewDispatcherApplication implements CommandLineRunner {
 
-    public static void main(String[] args) { SpringApplication.run(LocoCrewDispatherApplication.class, args); }
+    public static void main(String[] args) { SpringApplication.run(LocoCrewDispatcherApplication.class, args); }
 
     @Override
     public void run(String[] args) {

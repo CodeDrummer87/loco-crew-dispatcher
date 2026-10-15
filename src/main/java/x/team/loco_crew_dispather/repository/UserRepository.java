@@ -13,10 +13,6 @@ import java.util.Optional;
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
 
-    Optional<User> findByUsername(String username);
-
-    boolean existsByUsername(String username);
-
     @Query("""
               SELECT NEW  x.team.loco_crew_dispather.dto.UserDto(u.id, u.fullName, 
                           u.personnelNumber, u.dateOfEmployment, p.title)

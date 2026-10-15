@@ -20,15 +20,6 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(unique = true, nullable = false)
-    private String username;
-
-    @Column(nullable = false)
-    private String password;
-
-    @Column(nullable = false)
-    private String role;
-
     @Column(name = "full_name", nullable = false)
     private String fullName;
 
