@@ -40,6 +40,7 @@ public class SecurityConfig {
                         .permitAll()//.:: Страница входа доступна всем
                         .requestMatchers(
                                 "/api/v1/auth/register",
+                                "/register",
                                 "/admin"
                         ).hasRole("ADMIN") //.:: Админка требует наличие роли ADMIN
                         .anyRequest().authenticated() //.:: Всё остальное требует авторизации
