@@ -1,0 +1,24 @@
+package x.team.loco_crew_dispatcher;
+
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import x.team.loco_crew_dispatcher.util.CrewOrderParser;
+
+@SpringBootApplication
+public class LocoCrewDispatcherApplication implements CommandLineRunner {
+
+    public static void main(String[] args) { SpringApplication.run(LocoCrewDispatcherApplication.class, args); }
+
+    @Override
+    public void run(String[] args) {
+        try {
+            CrewOrderParser crewOrderParser = new CrewOrderParser();
+            crewOrderParser.readFromFile();
+            crewOrderParser.displayOrders(5);
+        } catch (Exception e) {
+            System.err.println("Ошибка при работе с файлом наряда: " + e.getMessage());
+        }
+    }
+
+}
