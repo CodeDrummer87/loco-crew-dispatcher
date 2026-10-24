@@ -37,11 +37,11 @@ public class SecurityConfig {
                                 "/api/v1/locomotive-crews/**",
                                 "/login",
                                 "/api/v1/auth/login",
-                                "/register")
+                                "/register",
+                                "/admin")
                         .permitAll()//.:: Страница входа доступна всем
                         .requestMatchers(
-                                "/api/v1/auth/register",
-                                "/admin"
+                                "/api/v1/auth/register"
                         ).hasRole("ADMIN") //.:: Админка требует наличие роли ADMIN
                         .anyRequest().authenticated() //.:: Всё остальное требует авторизации
                 )
