@@ -12,5 +12,5 @@ ALTER TABLE users
         FOREIGN KEY (position_id) REFERENCES positions(id);
 
 -- Назначаем должности по ролям (НЕ по именам!)
-UPDATE users SET position_id = (SELECT id FROM positions WHERE title = 'ЗавБригадами') WHERE role = 'ADMIN';
-UPDATE users SET position_id = (SELECT id FROM positions WHERE title = 'Нарядчик') WHERE role = 'USER';
+UPDATE users SET position_id = (SELECT id FROM positions WHERE title = 'ЗавБригадами') WHERE id = 1;
+UPDATE users SET position_id = (SELECT id FROM positions WHERE title = 'Нарядчик') WHERE id != 1;
