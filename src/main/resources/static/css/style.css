@@ -140,6 +140,7 @@ button:hover {
 
 /* ----- личные кабинеты ----- */
 .modal-container {
+    position: relative;
     padding: 30px;
     width: 90%;
     max-width: 1200px;
@@ -253,6 +254,12 @@ button:hover {
 .add-employee:hover,
 .btn-close:hover {
     background-color: #1f2937;
+}
+
+#logoutBtn {
+    position: absolute;
+    top: -60px;
+    right: 30px;
 }
 
 /* ----- таблицы ----- */
