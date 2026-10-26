@@ -32,6 +32,13 @@ let currentPage = 0;
 // cобытие, которое срабатывает, когда вcя HTML-страница загрузилась
 document.addEventListener('DOMContentLoaded', function () {
 
+    const payload = requireRole('ROLE_ADMIN');
+    if (!payload) return;
+
+    startTokenWatcher();    // проверяет валидность токена каждые 30 сек
+
+    document.getElementById('logoutBtn').addEventListener('click', logout);
+
     // функция для открытия модального окна
     function openModal(modal, activeButton) {
         // закрываем предыдущее открытое модальное окно, если оно есть
