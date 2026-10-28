@@ -11,12 +11,15 @@
         <h2>Вход в систему</h2>
         
         <form id="loginForm">
-            <input type="text" placeholder="Логин" required>
-            <input type="password" placeholder="Пароль" required>
-            <button class="enter-btn" type="submit">Войти</button>
+            <input type="text" id="login" placeholder="Логин" required>
+            <input type="password" id="password" placeholder="Пароль" required>
+            <button class="enter-btn" id="login_btn" type="button">Войти</button>
         </form>
        </div> 
         <p id="currentMessage">&nbsp;</p>
-    
+
+        <script src="../js/security/jwt.js"></script>
+        <script src="../js/security/auth.js"></script>
+        <script src="../js/security/app.js"></script>
 </body>
 </html>

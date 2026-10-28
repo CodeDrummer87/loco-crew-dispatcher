@@ -38,7 +38,8 @@ public class SecurityConfig {
                                 "/login",
                                 "/api/v1/auth/login",
                                 "/register",
-                                "/admin")
+                                "/admin",
+                                "/user")
                         .permitAll()//.:: Страница входа доступна всем
                         .requestMatchers(
                                 "/api/v1/auth/register"

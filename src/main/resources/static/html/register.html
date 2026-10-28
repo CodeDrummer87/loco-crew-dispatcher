@@ -8,20 +8,25 @@
 </head>
 <body>
     <div class="register-container">
-        <h2>Новая новая учётная запись</h2>
+        <h2>Новая учётная запись</h2>
         
         <form id="registerForm">
-            <input type="text" placeholder="Логин" required>
-            <input type="password" placeholder="Пароль" required>
+            <input type="text" id="regLogin" placeholder="Логин" required>
+            <input type="password" id="regPassword" placeholder="Пароль" required>
             <select id="roleSelect" required>
                 <option value="" disabled selected hidden>Роль</option>
                 <option value="USER">Пользователь</option>
                 <option value="ADMIN">Администратор</option>
             </select>
-            <button class="cancel-btn" onclick="location.href='/admin'">Отмена</button>
-            <button class="enter-btn" type="submit">Создать</button>
+            <button type="reset" class="cancel-btn">Отмена</button>
+            <button class="enter-btn" id="registerBtn" type="button">Создать</button>
+            <button type="button" class="cancel-btn" onclick="location.href='/admin'">Выйти</button>
         </form>
+        <p id="regMessage">&nbsp;</p>
        </div>
-    
+
+        <script src="../js/security/jwt.js"></script>
+        <script src="../js/security/auth.js"></script>
+        <script src="../js/security/register.js"></script>
 </body>
 </html>
