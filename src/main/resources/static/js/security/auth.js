@@ -62,9 +62,6 @@ function logout() {
     localStorage.removeItem(TOKEN_KEY);
     window.location.href = '/login';
 }
-function getUsername(payload) {
-    return payload?.sub || 'данные отсутствуют';
-}
 
 /**
 
