@@ -43,6 +43,21 @@ public class EmployeeServiceTests {
     }
 
     @Test
+    @DisplayName("Test get employee count returns 0 when repository is empty")
+    void givenNoEmployees_whenGetEmployeeCount_thenZeroIsReturned() {
+        // given
+        long expectedCount = 0L;
+        BDDMockito.given(employeeRepository.count()).willReturn(expectedCount);
+
+        // when
+        long currentCount = employeeServiceUnderTest.getEmployeeCount();
+
+        // then
+        assertThat(currentCount).isEqualTo(expectedCount);
+        verify(employeeRepository).count();
+    }
+
+    @Test
     @DisplayName("Test get employee page functionality")
     void givenEmployeePageWithParams_whenGetEmployeePage_thenEmployeePageIsReturned() {
         //given
@@ -58,7 +73,7 @@ public class EmployeeServiceTests {
         Page<EmployeeDto> currentPage = employeeServiceUnderTest.getEmployeePage(page, size, sortBy);
 
         //then
-        assertThat(currentPage).isEqualTo(expectedPage);
+        assertThat(currentPage).isSameAs(expectedPage);
         verify(employeeRepository).getAllEmployees(PageRequest.of(page, size, Sort.by(sortBy).ascending()));
     }
 
@@ -66,8 +81,8 @@ public class EmployeeServiceTests {
     @DisplayName("Test get employees by position functionality")
     void givenPositionId_whenGetEmployeesByPosition_thenEmployeeCountIsReturned() {
         // given
-        long positionId = 1;
-        long expectedCount = 9;
+        long positionId = 1L;
+        long expectedCount = 9L;
 
         BDDMockito.given(employeeRepository.countByPositionId(positionId))
                 .willReturn(expectedCount);
@@ -81,12 +96,30 @@ public class EmployeeServiceTests {
     }
 
     @Test
+    @DisplayName("Test get employees by position returns 0 when no employees with this position")
+    void givenPositionIdWithNoEmployees_whenGetEmployeesByPosition_thenZeroIsReturned() {
+        // given
+        long positionId = 100L;
+        long expectedCount = 0L;
+
+        BDDMockito.given(employeeRepository.countByPositionId(positionId))
+                .willReturn(expectedCount);
+
+        // when
+        long currentCount = employeeServiceUnderTest.getEmployeesByPosition(positionId);
+
+        // then
+        assertThat(currentCount).isEqualTo(expectedCount);
+        verify(employeeRepository).countByPositionId(positionId);
+    }
+
+    @Test
     @DisplayName("Test get employees by position and status functionality")
     void givenPositionIdAndStatus_whenGetEmployeesByPositionAndStatus_thenEmployeeCountIsReturned() {
         //given
-        long positionId = 1;
+        long positionId = 1L;
         Status status = Status.WORKING;
-        long expectedCount = 2;
+        long expectedCount = 2L;
 
         BDDMockito.given(employeeRepository.countByPositionIdAndStatus(positionId, status))
                 .willReturn(expectedCount);
@@ -95,6 +128,25 @@ public class EmployeeServiceTests {
         long currentCount = employeeServiceUnderTest.getEmployeesByPositionAndStatus(positionId, status);
 
         //then
+        assertThat(currentCount).isEqualTo(expectedCount);
+        verify(employeeRepository).countByPositionIdAndStatus(positionId, status);
+    }
+
+    @Test
+    @DisplayName("Test get employees by position and status returns 0 when no matches")
+    void givenPositionAndStatusWithNoMatches_whenGetEmployeesByPositionAndStatus_thenZeroIsReturned() {
+        // given
+        long positionId = 1L;
+        Status status = Status.SESSION;
+        long expectedCount = 0L;
+
+        BDDMockito.given(employeeRepository.countByPositionIdAndStatus(positionId, status))
+                .willReturn(expectedCount);
+
+        // when
+        long currentCount = employeeServiceUnderTest.getEmployeesByPositionAndStatus(positionId, status);
+
+        // then
         assertThat(currentCount).isEqualTo(expectedCount);
         verify(employeeRepository).countByPositionIdAndStatus(positionId, status);
     }
